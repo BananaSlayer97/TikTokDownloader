@@ -7,7 +7,7 @@ from src.translation import _
 if TYPE_CHECKING:
     from src.config import Parameter
     from src.testers import Params
-
+import json 
 
 class Info(API):
     def __init__(
@@ -68,11 +68,11 @@ class Info(API):
     ) -> dict:
         if isinstance(self.sec_user_id, str):
             self.sec_user_id = [self.sec_user_id]
-        value = f"[{','.join(f'"{i}"' for i in self.sec_user_id)}]"
+        value = json.dumps(self.sec_user_id)
         return {
             "sec_user_ids": value,
         }
-
+    
 
 async def test():
     from src.testers import Params

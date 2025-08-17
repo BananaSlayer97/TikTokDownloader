@@ -83,12 +83,7 @@ class __DownloadRecorder:
     def __restore_data(self, ids: set) -> set:
         if self.state:
             return ids
-        self.console.print(
-            f"程序检测到上次运行可能没有正常结束，您的作品下载记录数据可能已经丢失！\n数据文件路径：{
-                self.path.resolve()
-            }",
-            style=ERROR,
-        )
+        self.console.print(f"程序检测到上次运行可能没有正常结束，您的作品下载记录数据可能已经丢失！\n数据文件路径：{self.path.resolve()}", style=ERROR)
         if self.backup.exists():
             if (
                 self.console.input(

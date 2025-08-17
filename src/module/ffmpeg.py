@@ -41,12 +41,13 @@ class FFMPEG:
 
     @staticmethod
     def generate_command_darwin(command: list) -> None:
+        cmd_str = " ".join(command).replace('"', '\\"')
         script = dedent(f"""
-                tell application "Terminal"
-                    do script "{" ".join(command).replace('"', '\\"')}"
-                    activate
-                end tell
-                """)
+            tell application "Terminal"
+                do script "{cmd_str}"
+                activate
+            end tell
+        """)
         Popen(["osascript", "-e", script])
 
     @staticmethod
